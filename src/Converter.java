@@ -1,12 +1,16 @@
 public class Converter {
 
-    public static int km(int stepInMonth){
-        int km = stepInMonth / 100000;
+    public static int km(int allStep){
+        int cmInStep = 75;
+        int cmImKm = 100000;
+        int km = allStep * cmInStep / cmImKm ;
         return km;
     }
 
-    public static int kl(int stepInMonth){
-        int kl = stepInMonth / 1000;
-        return kl;
+    public static int kilocalories(int allStep){
+        int caloriesInStep = 50;
+        int caloriesInKilocalories = 1000;
+        int kilocalories = allStep * caloriesInStep / caloriesInKilocalories;
+        return kilocalories;
     }
 }
