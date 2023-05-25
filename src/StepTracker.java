@@ -2,13 +2,12 @@ import java.util.Scanner;
 
 public class StepTracker {
     private int purpose = 10000;
-    private int days = 30;
-    private int[][] year = new int[12][days];
+    private final int DAYS = 30;
+    private final int[][] YEAR = new int[12][DAYS];
     private int allStep = 0;
     private int maxStep = 0;
     private int meanStep = 0;
-    private Scanner scanner = new Scanner(System.in);
-    private Converter converter = new Converter();
+    private final Scanner scanner = new Scanner(System.in);
 
     public void commandOne(){
         System.out.println("Какой день хотите выбрать?");
@@ -41,21 +40,20 @@ public class StepTracker {
         System.out.println("Поздравляю, теперь ваша ежедневная цель: " + this.target());
     }
 
-    private int[][] stepInDay(int month, int day, int step) {
-        year[month][day] = step;
-        return year;
+    private void stepInDay(int month, int day, int step) {
+        YEAR[month][day] = step;
     }
 
     private void statistic(int month) {
-        for (int j = 0; j < year[month].length; j++) {
-            System.out.println((j + 1) + " день: " + year[month][j]);
+        for (int j = 0; j < YEAR[month].length; j++) {
+            System.out.println((j + 1) + " день: " + YEAR[month][j]);
         }
         this.allStep(month);
         this.maxStep(month);
         this.meanStep(month);
 
-        System.out.println("Пройдена дистанция в " + converter.km(allStep) + " километров");
-        System.out.println("Количество сожжённых килокалорий: " + converter.kilocalories(allStep));
+        System.out.println("Пройдена дистанция в " + Converter.km(allStep) + " километров");
+        System.out.println("Количество сожжённых килокалорий: " + Converter.kilocalories(allStep));
         allStep = 0;
 
         this.printBestSeries(this.bestSeries(month));
@@ -63,8 +61,8 @@ public class StepTracker {
 
     private int bestSeries(int i) {
         int currentSeries = 0, bestSeries = 0;
-        for (int j = 0; j < year[i].length - 1; j++) {
-            if (year[i][j] >= this.purpose) {
+        for (int j = 0; j < YEAR[i].length - 1; j++) {
+            if (YEAR[i][j] >= this.purpose) {
                 currentSeries++;
                 if (currentSeries > bestSeries) {
                     bestSeries = currentSeries;
@@ -87,9 +85,9 @@ public class StepTracker {
     }
 
     private void maxStep(int i) {
-        for (int j = 0; j < year[i].length; j++) {
-            if (maxStep < year[i][j]) {
-                maxStep = year[i][j];
+        for (int j = 0; j < YEAR[i].length; j++) {
+            if (maxStep < YEAR[i][j]) {
+                maxStep = YEAR[i][j];
             }
         }
         System.out.println("Максимальное количество шагов было: " + maxStep);
@@ -97,16 +95,16 @@ public class StepTracker {
     }
 
     private void meanStep(int i) {
-        for (int j = 0; j < year[i].length; j++) {
-            meanStep = allStep / days;
+        for (int j = 0; j < YEAR[i].length; j++) {
+            meanStep = allStep / DAYS;
         }
         System.out.println("Среднее количество шагов: " + meanStep);
         meanStep = 0;
     }
 
     private void allStep(int i) {
-        for (int j = 0; j < year[i].length; j++) {
-            allStep = allStep + year[i][j];
+        for (int j = 0; j < YEAR[i].length; j++) {
+            allStep = allStep + YEAR[i][j];
         }
         System.out.println("Общее количество шагов: " + allStep);
     }

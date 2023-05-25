@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class Main {
-    private StepTracker stepTracker = new StepTracker();
-    private Scanner scanner = new Scanner(System.in);
+    private final StepTracker stepTracker = new StepTracker();
+    private final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -18,7 +18,7 @@ public class Main {
                 stepTracker.commandTwo();
             } else if (command == 3) {
                 stepTracker.commandThree();
-            } else if (command < 0 | command > 3) {
+            } else {
                 System.out.println("Пожалуйста, введите правильное значение.");
             }
             printMenu();

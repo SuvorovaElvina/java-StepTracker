@@ -1,16 +1,14 @@
 public class Converter {
-    private static int cmInStep = 75;
-    private static  int cmImKm = 100000;
-    private static int caloriesInStep = 50;
-    private static int caloriesInKilocalories = 1000;
+    private static final int CM_IN_STEP = 75;
+    private static final int CM_IN_KM = 100000;
+    private static final int CALORIES_IN_STEP = 50;
+    private static final int CALORIES_IN_KILOCALORIES = 1000;
 
     public static int km(int allStep){
-        int km = allStep * cmInStep / cmImKm ;
-        return km;
+        return allStep * CM_IN_STEP / CM_IN_KM;
     }
 
     public static int kilocalories(int allStep){
-        int kilocalories = allStep * caloriesInStep / caloriesInKilocalories;
-        return kilocalories;
+        return allStep * CALORIES_IN_STEP / CALORIES_IN_KILOCALORIES;
     }
 }
